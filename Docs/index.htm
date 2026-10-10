@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0b1020">
+<title>ملفات المدرسة | Teacher Archive</title>
+<style>
+:root{--bg:#0b1020;--panel:#141c30;--line:#293650;--gold:#e8c77b;--muted:#9ba9c2;--white:#f4f6fc}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top,#192746,var(--bg) 60%);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;min-height:100vh}
+header{padding:25px 18px;border-bottom:1px solid var(--line);background:#0b1020c9}
+nav,.wrap{max-width:1050px;margin:auto}
+nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{font-size:13px;color:var(--gold);letter-spacing:2px}
+.pill{border:1px solid var(--line);border-radius:30px;padding:8px 12px;color:var(--muted);font-size:12px}
+.hero{padding:55px 20px 32px;text-align:center}
+.eyebrow{color:var(--gold);font-size:12px;letter-spacing:2px}
+h1{font-size:clamp(30px,7vw,55px);margin:16px 0 12px;line-height:1.25}
+h1 span{color:var(--gold)}
+.sub{color:var(--muted);line-height:1.9;max-width:530px;margin:auto;font-size:14px}
+.wrap{padding:10px 18px 55px}
+.search{display:block;width:100%;max-width:520px;margin:20px auto 30px;padding:15px 17px;border-radius:14px;border:1px solid var(--line);background:#111a2b;color:white;font:inherit;outline:none}
+.search:focus{border-color:var(--gold)}
+.section-title{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:25px 0 17px}
+h2{font-size:19px;margin:0}
+.small{font-size:12px;color:var(--muted)}
+.tree-root{width:min(100%,310px);margin:auto;padding:17px;border:1px solid #8e7545;background:#292718;border-radius:15px;text-align:center;color:var(--gold);font-weight:700}
+.trunk{width:1px;height:28px;background:var(--gold);margin:auto}
+.branches{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;position:relative}
+.branch{min-width:0}
+.branch-head{border:1px solid var(--line);background:var(--panel);border-radius:13px;padding:15px 5px;text-align:center;font-size:13px;font-weight:700}
+.branch-head span{display:block;font-size:21px;margin-bottom:8px}
+.branch-line{height:20px;width:1px;background:var(--line);margin:auto}
+.people{display:grid;gap:9px}
+.person{width:100%;min-width:0;border:1px solid var(--line);background:#11192a;border-radius:13px;padding:13px 5px;color:var(--white);font:inherit;cursor:pointer;transition:.2s}
+.person:hover,.person:focus-visible{border-color:var(--gold);transform:translateY(-2px)}
+.avatar{width:42px;height:42px;margin:0 auto 9px;border-radius:50%;display:grid;place-items:center;background:#29344b;color:var(--gold);font-size:21px}
+.person strong{display:block;font-size:12px;overflow-wrap:anywhere}
+.person small{display:block;color:var(--muted);font-size:11px;margin-top:6px}
+.empty{text-align:center;color:var(--muted);padding:25px;display:none}
+footer{text-align:center;border-top:1px solid var(--line);padding:24px;color:var(--muted);font-size:12px;line-height:1.8}
+.modal{position:fixed;inset:0;background:#030611df;display:none;align-items:center;justify-content:center;padding:18px;z-index:5;overflow:auto}
+.modal.open{display:flex}
+.profile{width:100%;max-width:440px;max-height:90vh;overflow:auto;background:#141c30;border:1px solid #34415a;border-radius:22px;padding:24px}
+.close{float:left;border:1px solid var(--line);background:transparent;color:white;border-radius:10px;padding:7px 12px;font-size:18px;cursor:pointer}
+.profile-avatar{clear:both;width:82px;height:82px;border-radius:50%;background:#2b3345;color:var(--gold);display:grid;place-items:center;font-size:35px;margin:30px auto 15px}
+.profile h2{text-align:center;font-size:25px}
+.tag{text-align:center;color:var(--gold);font-size:13px;margin:9px}
+.bio{color:#c2cce0;line-height:2;text-align:center;font-size:14px;margin:22px 0}
+.audio-box{border:1px solid var(--line);border-radius:14px;padding:15px}
+.audio-box p{font-size:13px;margin:0 0 12px}
+audio{width:100%;height:42px}
+.note{font-size:11px;color:var(--muted);line-height:1.8;margin-top:12px}
+@media(max-width:520px){.branches{gap:6px}.branch-head{font-size:11px;padding:12px 2px}.person{padding:12px 2px}.person strong{font-size:11px}.avatar{width:36px;height:36px;font-size:18px}.hero{padding-top:42px}}
+</style>
+</head>
+<body>
+<header>
+<nav>
+<div class="brand">SCHOOL ARCHIVE / 01</div>
+<div class="pill">نسخة الطلاب • غير رسمية</div>
+</nav>
+</header>
+
+<section class="hero">
+<div class="eyebrow">THE PEOPLE BEHIND THE CLASSROOM</div>
+<h1>ملفات <span>المدرسة</span></h1>
+<p class="sub">كل أستاذ إله حكاية، وكل فرع بيه شخصيات تستحق التوثيق.</p>
+</section>
+
+<main class="wrap">
+<input id="search" class="search" type="search" placeholder="ابحث عن أستاذ أو مادة..." aria-label="البحث عن أستاذ">
+<div class="section-title">
+<h2>شجرة الكادر التدريسي</h2>
+<span class="small">اضغط على أي اسم</span>
+</div>
+
+<div class="tree-root">🏫 المدرسة <div class="small">Teacher Directory</div></div>
+<div class="trunk"></div>
+
+<div class="branches" id="branches">
+<section class="branch">
+<div class="branch-head"><span>🧪</span>العلوم</div><div class="branch-line"></div>
+<div class="people">
+<button class="person" data-name="أستاذ الكيمياء" data-subject="الكيمياء" data-bio="اكتب هنا التعريف الطريف المتفق عليه مع الأستاذ." data-audio=""><span class="avatar">⚗️</span><strong>أستاذ الكيمياء</strong><small>الكيمياء</small></button>
+<button class="person" data-name="أستاذ الفيزياء" data-subject="الفيزياء" data-bio="اكتب هنا التعريف الطريف المتفق عليه مع الأستاذ." data-audio=""><span class="avatar">⚡</span><strong>أستاذ الفيزياء</strong><small>الفيزياء</small></button>
+</div>
+</section>
+
+<section class="branch">
+<div class="branch-head"><span>📐</span>الرياضيات</div><div class="branch-line"></div>
+<div class="people">
+<button class="person" data-name="أستاذ الرياضيات" data-subject="الرياضيات" data-bio="اكتب هنا التعريف الطريف المتفق عليه مع الأستاذ." data-audio=""><span class="avatar">π</span><strong>أستاذ الرياضيات</strong><small>الرياضيات</small></button>
+<button class="person" data-name="أستاذ الحاسوب" data-subject="الحاسوب" data-bio="اكتب هنا التعريف الطريف المتفق عليه مع الأستاذ." data-audio=""><span class="avatar">⌘</span><strong>أستاذ الحاسوب</strong><small>الحاسوب</small></button>
+</div>
+</section>
+
+<section class="branch">
+<div class="branch-head"><span>📚</span>اللغات</div><div class="branch-line"></div>
+<div class="people">
+<button class="person" data-name="أستاذ العربي" data-subject="اللغة العربية" data-bio="اكتب هنا التعريف الطريف المتفق عليه مع الأستاذ." data-audio=""><span class="avatar">ع</span><strong>أستاذ العربي</strong><small>اللغة العربية</small></button>
+<button class="person" data-name="أستاذ الإنكليزي" data-subject="اللغة الإنكليزية" data-bio="اكتب هنا التعريف الطريف المتفق عليه مع الأستاذ." data-audio=""><span class="avatar">A</span><strong>أستاذ الإنكليزي</strong><small>اللغة الإنكليزية</small></button>
+</div>
+</section>
+</div>
+<div id="empty" class="empty">ما لكينا نتائج. جرّب اسم ثاني.</div>
+</main>
+
+<footer>STUDENT PROJECT • MADE WITH RESPECT<br>موقع طلابي ساخر بموافقة أصحاب الملفات المنشورة.</footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="profileName">
+<div class="profile">
+<button class="close" id="close" aria-label="إغلاق">×</button>
+<div class="profile-avatar" id="profileAvatar">👨‍🏫</div>
+<h2 id="profileName">اسم الأستاذ</h2>
+<div class="tag" id="profileSubject">المادة</div>
+<p class="bio" id="profileBio"></p>
+<div class="audio-box">
+<p>🎙️ رسالة صوتية</p>
+<audio id="player" controls preload="none"></audio>
+<div id="audioNote" class="note">التسجيل الصوتي غير مضاف حالياً.</div>
+</div>
+</div>
+</div>
+
+<script>
+const modal=document.getElementById('modal');
+const player=document.getElementById('player');
+const audioNote=document.getElementById('audioNote');
+document.querySelectorAll('.person').forEach(btn=>{
+btn.addEventListener('click',()=>{
+document.getElementById('profileName').textContent=btn.dataset.name;
+document.getElementById('profileSubject').textContent=btn.dataset.subject;
+document.getElementById('profileBio').textContent=btn.dataset.bio;
+document.getElementById('profileAvatar').textContent=btn.querySelector('.avatar').textContent;
+player.pause();
+player.removeAttribute('src');
+player.load();
+if(btn.dataset.audio){
+player.src=btn.dataset.audio;
+audioNote.textContent='شغّل الرسالة من زر التشغيل.';
+}else{
+audioNote.textContent='التسجيل الصوتي غير مضاف حالياً.';
+}
+modal.classList.add('open');
+document.getElementById('close').focus();
+});
+});
+function closeModal(){
+modal.classList.remove('open');
+player.pause();
+}
+document.getElementById('close').addEventListener('click',closeModal);
+modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
+document.getElementById('search').addEventListener('input',e=>{
+const q=e.target.value.trim().toLowerCase();
+let count=0;
+document.querySelectorAll('.branch').forEach(branch=>{
+let visible=0;
+branch.querySelectorAll('.person').forEach(btn=>{
+const match=(btn.dataset.name+' '+btn.dataset.subject).toLowerCase().includes(q);
+btn.style.display=match?'':'none';
+if(match){visible++;count++}
+});
+branch.style.display=visible?'':'none';
+});
+document.getElementById('empty').style.display=count?'none':'block';
+});
+</script>
+</body>
+</html>
