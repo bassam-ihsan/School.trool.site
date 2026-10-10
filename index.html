@@ -1,173 +1,474 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#0b1020">
-<title>ملفات المدرسة | Teacher Archive</title>
+<meta name="theme-color" content="#111111">
+<title>School Archive</title>
+
 <style>
-:root{--bg:#0b1020;--panel:#141c30;--line:#293650;--gold:#e8c77b;--muted:#9ba9c2;--white:#f4f6fc}
-*{box-sizing:border-box}
-body{margin:0;background:radial-gradient(ellipse at top,#192746,var(--bg) 60%);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,sans-serif;min-height:100vh}
-header{padding:25px 18px;border-bottom:1px solid var(--line);background:#0b1020c9}
-nav,.wrap{max-width:1050px;margin:auto}
-nav{display:flex;align-items:center;justify-content:space-between;gap:12px}
-.brand{font-size:13px;color:var(--gold);letter-spacing:2px}
-.pill{border:1px solid var(--line);border-radius:30px;padding:8px 12px;color:var(--muted);font-size:12px}
-.hero{padding:55px 20px 32px;text-align:center}
-.eyebrow{color:var(--gold);font-size:12px;letter-spacing:2px}
-h1{font-size:clamp(30px,7vw,55px);margin:16px 0 12px;line-height:1.25}
-h1 span{color:var(--gold)}
-.sub{color:var(--muted);line-height:1.9;max-width:530px;margin:auto;font-size:14px}
-.wrap{padding:10px 18px 55px}
-.search{display:block;width:100%;max-width:520px;margin:20px auto 30px;padding:15px 17px;border-radius:14px;border:1px solid var(--line);background:#111a2b;color:white;font:inherit;outline:none}
-.search:focus{border-color:var(--gold)}
-.section-title{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:25px 0 17px}
-h2{font-size:19px;margin:0}
-.small{font-size:12px;color:var(--muted)}
-.tree-root{width:min(100%,310px);margin:auto;padding:17px;border:1px solid #8e7545;background:#292718;border-radius:15px;text-align:center;color:var(--gold);font-weight:700}
-.trunk{width:1px;height:28px;background:var(--gold);margin:auto}
-.branches{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;position:relative}
-.branch{min-width:0}
-.branch-head{border:1px solid var(--line);background:var(--panel);border-radius:13px;padding:15px 5px;text-align:center;font-size:13px;font-weight:700}
-.branch-head span{display:block;font-size:21px;margin-bottom:8px}
-.branch-line{height:20px;width:1px;background:var(--line);margin:auto}
-.people{display:grid;gap:9px}
-.person{width:100%;min-width:0;border:1px solid var(--line);background:#11192a;border-radius:13px;padding:13px 5px;color:var(--white);font:inherit;cursor:pointer;transition:.2s}
-.person:hover,.person:focus-visible{border-color:var(--gold);transform:translateY(-2px)}
-.avatar{width:42px;height:42px;margin:0 auto 9px;border-radius:50%;display:grid;place-items:center;background:#29344b;color:var(--gold);font-size:21px}
-.person strong{display:block;font-size:12px;overflow-wrap:anywhere}
-.person small{display:block;color:var(--muted);font-size:11px;margin-top:6px}
-.empty{text-align:center;color:var(--muted);padding:25px;display:none}
-footer{text-align:center;border-top:1px solid var(--line);padding:24px;color:var(--muted);font-size:12px;line-height:1.8}
-.modal{position:fixed;inset:0;background:#030611df;display:none;align-items:center;justify-content:center;padding:18px;z-index:5;overflow:auto}
-.modal.open{display:flex}
-.profile{width:100%;max-width:440px;max-height:90vh;overflow:auto;background:#141c30;border:1px solid #34415a;border-radius:22px;padding:24px}
-.close{float:left;border:1px solid var(--line);background:transparent;color:white;border-radius:10px;padding:7px 12px;font-size:18px;cursor:pointer}
-.profile-avatar{clear:both;width:82px;height:82px;border-radius:50%;background:#2b3345;color:var(--gold);display:grid;place-items:center;font-size:35px;margin:30px auto 15px}
-.profile h2{text-align:center;font-size:25px}
-.tag{text-align:center;color:var(--gold);font-size:13px;margin:9px}
-.bio{color:#c2cce0;line-height:2;text-align:center;font-size:14px;margin:22px 0}
-.audio-box{border:1px solid var(--line);border-radius:14px;padding:15px}
-.audio-box p{font-size:13px;margin:0 0 12px}
-audio{width:100%;height:42px}
-.note{font-size:11px;color:var(--muted);line-height:1.8;margin-top:12px}
-@media(max-width:520px){.branches{gap:6px}.branch-head{font-size:11px;padding:12px 2px}.person{padding:12px 2px}.person strong{font-size:11px}.avatar{width:36px;height:36px;font-size:18px}.hero{padding-top:42px}}
+:root {
+  --bg:#11110f;
+  --lime:#d5ff35;
+  --pink:#ff4e9b;
+  --blue:#53d9ff;
+  --white:#f5f1e8;
+  --muted:#b8b7af;
+}
+* { box-sizing:border-box; }
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--white);
+  font-family:Tahoma,Arial,sans-serif;
+  transition:background .35s;
+}
+button { font:inherit; cursor:pointer; }
+.hidden { display:none!important; }
+
+header {
+  position:sticky; top:0; z-index:5;
+  display:flex; justify-content:space-between;
+  align-items:center; gap:10px;
+  padding:13px 17px;
+  background:#11110fee;
+  border-bottom:2px solid var(--lime);
+}
+.logo { color:var(--lime); font-weight:1000; letter-spacing:1px; }
+button {
+  padding:10px 14px;
+  border:1px solid var(--lime);
+  background:var(--lime); color:#111;
+  font-weight:900; border-radius:3px;
+}
+button.secondary { background:transparent;color:var(--white); }
+main { max-width:1100px; margin:auto; padding:20px 15px 45px; }
+.hero { text-align:center; padding:30px 8px 18px; }
+h1 { font-size:clamp(34px,7vw,62px); margin:8px 0; line-height:1.3; }
+.neon { color:var(--lime); text-shadow:3px 3px 0 var(--pink); }
+.hero p { color:var(--muted); line-height:1.9; }
+
+.characters {
+  max-width:760px; margin:25px auto;
+  display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px;
+}
+.character {
+  text-align:right; min-height:85px;
+  background:#20201d; color:var(--white);
+  border:2px solid #494941; padding:17px;
+  clip-path:polygon(0 0,96% 0,100% 12%,100% 100%,4% 100%,0 88%);
+}
+.character:hover { border-color:var(--lime); }
+.character strong { display:block;font-size:20px; }
+.character small { display:block;color:var(--pink);margin-top:7px; }
+
+.user-strip {
+  border:1px dashed var(--lime); padding:12px;
+  margin:12px 0 25px; color:var(--muted);
+}
+.user-strip strong { color:var(--lime); }
+
+.section-head {
+  display:flex; align-items:center; justify-content:space-between;
+  gap:10px; margin:25px 0 15px;
+}
+.section-head h2 { margin:0;font-size:24px; }
+.section-head span { font-size:12px;color:var(--muted); }
+
+.tree-frame {
+  background:radial-gradient(ellipse at center,#273020,#11110f 75%);
+  border:1px solid #414137; padding:6px; overflow:hidden;
+}
+.tree { width:100%;height:auto;display:block; }
+.branch {
+  fill:none;stroke:#a8794b;stroke-width:13;
+  stroke-linecap:round;stroke-linejoin:round;
+}
+.twig {
+  fill:none;stroke:#a8794b;stroke-width:7;
+  stroke-linecap:round;
+}
+.leaf { fill:#263c20;stroke:var(--lime);stroke-width:2; }
+.node { cursor:pointer;outline:none; }
+.node circle { fill:#161b12;stroke:var(--lime);stroke-width:3; }
+.node text { fill:white;text-anchor:middle;font-size:17px;font-weight:bold;pointer-events:none; }
+.node .subtext { fill:var(--pink);font-size:12px; }
+.node:hover circle,.node:focus circle,.node.active circle {
+  fill:#425627;stroke:white;stroke-width:5;
+}
+.node.assistant circle { stroke:var(--blue);stroke-dasharray:5 4; }
+
+.teacher-card {
+  margin-top:18px; padding:clamp(16px,4vw,32px);
+  border:2px solid #f5f1e8; position:relative; overflow:hidden;
+  background-color:#222;
+  background-image:radial-gradient(#ffffff17 1px,transparent 1px);
+  background-size:12px 12px;
+}
+.chemistry { background-color:#173c29; }
+.math { background-color:#302d58; }
+.arabic { background-color:#542b43; }
+.physics { background-color:#16485d; }
+.english { background-color:#634020; }
+.biology { background-color:#31502a; }
+.assistant { background-color:#25454a; }
+
+.teacher-head {
+  display:grid;grid-template-columns:145px minmax(0,1fr);
+  gap:20px;align-items:center;
+}
+.photo {
+  width:145px;aspect-ratio:4/5;position:relative;
+  border:2px solid var(--lime);background:#111;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
+.photo img { width:100%;height:100%;object-fit:cover; }
+.photo .placeholder {
+  position:absolute;inset:0;display:flex;align-items:center;
+  justify-content:center;text-align:center;padding:8px;
+  color:var(--lime);font-size:12px;line-height:1.8;
+  background:repeating-linear-gradient(135deg,#151713,#151713 8px,#24271e 8px,#24271e 16px);
+}
+.teacher-name { font-size:clamp(28px,5vw,46px);margin:0 0 12px; }
+.subject {
+  display:inline-block;background:var(--lime);color:#111;
+  padding:7px 10px;font-size:13px;font-weight:1000;
+}
+.fields { display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:25px; }
+.field { padding:15px;border:1px solid #ffffff55;background:#080b0a77; }
+.field h3 { color:var(--lime);font-size:14px;margin:0 0 10px; }
+.field p { line-height:2;margin:0;font-size:15px; }
+.quote {
+  margin-top:15px;padding:14px 17px;
+  border-right:5px solid var(--pink);
+  background:#08080888;font-size:clamp(18px,3vw,24px);
+  font-weight:1000;line-height:1.8;
+}
+.audio { margin-top:17px;padding:15px;border:1px dashed var(--blue);background:#080b0a99; }
+.audio h3 { margin:0 0 10px;color:var(--blue); }
+audio { width:100%;max-width:450px; }
+.note { color:#ddd;font-size:12px;line-height:1.9; }
+.controls { display:flex;gap:9px;flex-wrap:wrap;margin:15px 0 30px; }
+
+.challenge {
+  margin-top:40px;padding:clamp(17px,4vw,30px);
+  border:2px solid var(--pink);
+  background:linear-gradient(130deg,#301629,#151512 75%);
+}
+.challenge h2 { color:var(--pink); }
+.equation {
+  direction:ltr;text-align:center;
+  background:#0d0d0d;border:1px dashed #777;
+  padding:18px 8px;margin:15px 0;
+  font-family:Georgia,serif;font-size:clamp(17px,3vw,26px);
+  line-height:1.9;overflow-wrap:anywhere;
+}
+.prize { color:var(--lime);font-weight:1000;font-size:20px;line-height:1.9; }
+footer { text-align:center;border-top:1px solid #393932;padding:20px;color:#85857c; }
+
+@media(max-width:600px) {
+  .teacher-head { grid-template-columns:100px minmax(0,1fr);gap:13px; }
+  .photo { width:100px; }
+  .fields { grid-template-columns:1fr; }
+  .node text { font-size:19px; }
+}
+@media(max-width:380px) {
+  .characters { grid-template-columns:1fr; }
+  .teacher-head { grid-template-columns:82px minmax(0,1fr); }
+  .photo { width:82px; }
+}
 </style>
 </head>
+
 <body>
 <header>
-<nav>
-<div class="brand">SCHOOL ARCHIVE / 01</div>
-<div class="pill">نسخة الطلاب • غير رسمية</div>
-</nav>
+  <div class="logo">SCHOOL ARCHIVE</div>
+  <div>
+    <button class="secondary" id="treeBtn">الشجرة</button>
+    <button class="secondary" id="changeBtn">تغيير الشخصية</button>
+  </div>
 </header>
 
-<section class="hero">
-<div class="eyebrow">THE PEOPLE BEHIND THE CLASSROOM</div>
-<h1>ملفات <span>المدرسة</span></h1>
-<p class="sub">كل أستاذ إله حكاية، وكل فرع بيه شخصيات تستحق التوثيق.</p>
-</section>
+<main>
+  <section id="chooseScreen">
+    <div class="hero">
+      <h1>اختار شخصيتك</h1>
+      <p class="neon">(اكيد احسن شخصية بسام لان اني مسوي الموقع)</p>
+    </div>
 
-<main class="wrap">
-<input id="search" class="search" type="search" placeholder="ابحث عن أستاذ أو مادة..." aria-label="البحث عن أستاذ">
-<div class="section-title">
-<h2>شجرة الكادر التدريسي</h2>
-<span class="small">اضغط على أي اسم</span>
-</div>
+    <div class="characters">
+      <button class="character" data-character="ياسمين"><strong>ياسمين</strong></button>
+      <button class="character" data-character="بسام"><strong>بسام</strong><small>المؤسس</small></button>
+      <button class="character" data-character="عبدالله"><strong>عبدالله</strong><small>گيزر</small></button>
+      <button class="character" data-character="حسن"><strong>حسن</strong><small>انكليزي</small></button>
+      <button class="character" data-character="أحمد"><strong>أحمد</strong><small>ديليفري</small></button>
+      <button class="character" data-character="فاطمة"><strong>فاطمة</strong></button>
+      <button class="character" data-character="محمد علي"><strong>محمد علي</strong><small>الزقج</small></button>
+    </div>
+  </section>
 
-<div class="tree-root">🏫 المدرسة <div class="small">Teacher Directory</div></div>
-<div class="trunk"></div>
+  <section id="siteScreen" class="hidden">
+    <div class="hero">
+      <h1>ملفات <span class="neon">الأساتذة</span></h1>
+    </div>
+    <div class="user-strip">الشخصية المختارة: <strong id="chosenName"></strong></div>
 
-<div class="branches" id="branches">
-<section class="branch">
-<div class="branch-head"><span>🧪</span>العلوم</div><div class="branch-line"></div>
-<div class="people">
-<button class="person" data-name="أستاذ الكيمياء" data-subject="الكيمياء" data-bio="اكتب هنا التعريف الطريف المتفق عليه مع الأستاذ." data-audio=""><span class="avatar">⚗️</span><strong>أستاذ الكيمياء</strong><small>الكيمياء</small></button>
-<button class="person" data-name="أستاذ الفيزياء" data-subject="الفيزياء" data-bio="اكتب هنا التعريف الطريف المتفق عليه مع الأستاذ." data-audio=""><span class="avatar">⚡</span><strong>أستاذ الفيزياء</strong><small>الفيزياء</small></button>
-</div>
-</section>
+    <section id="treeSection">
+      <div class="section-head">
+        <h2>شجرة الأساتذة</h2><span>اضغط على اسم</span>
+      </div>
+      <div class="tree-frame">
+        <svg class="tree" viewBox="0 0 1000 610" role="img" aria-label="شجرة الأساتذة">
+          <path class="branch" d="M500 590 C500 510 490 440 500 360 C510 300 500 250 500 205"/>
+          <path class="branch" d="M500 455 C420 425 350 370 275 310 C220 265 170 240 120 225"/>
+          <path class="branch" d="M500 450 C585 420 655 365 725 305 C785 260 840 235 885 220"/>
+          <path class="branch" d="M500 360 C435 330 390 280 355 220 C330 185 310 160 285 145"/>
+          <path class="branch" d="M500 335 C570 305 620 265 650 210 C675 175 695 150 715 135"/>
+          <path class="twig" d="M275 310 L230 260 M725 305 L770 255 M355 220 L345 175 M650 210 L675 170"/>
+          <g>
+            <ellipse class="leaf" cx="120" cy="205" rx="44" ry="26" transform="rotate(-20 120 205)"/>
+            <ellipse class="leaf" cx="285" cy="125" rx="44" ry="26" transform="rotate(-20 285 125)"/>
+            <ellipse class="leaf" cx="500" cy="180" rx="44" ry="26"/>
+            <ellipse class="leaf" cx="715" cy="115" rx="44" ry="26" transform="rotate(20 715 115)"/>
+            <ellipse class="leaf" cx="885" cy="200" rx="44" ry="26" transform="rotate(20 885 200)"/>
+          </g>
 
-<section class="branch">
-<div class="branch-head"><span>📐</span>الرياضيات</div><div class="branch-line"></div>
-<div class="people">
-<button class="person" data-name="أستاذ الرياضيات" data-subject="الرياضيات" data-bio="اكتب هنا التعريف الطريف المتفق عليه مع الأستاذ." data-audio=""><span class="avatar">π</span><strong>أستاذ الرياضيات</strong><small>الرياضيات</small></button>
-<button class="person" data-name="أستاذ الحاسوب" data-subject="الحاسوب" data-bio="اكتب هنا التعريف الطريف المتفق عليه مع الأستاذ." data-audio=""><span class="avatar">⌘</span><strong>أستاذ الحاسوب</strong><small>الحاسوب</small></button>
-</div>
-</section>
+          <g class="node" data-id="mohammed" tabindex="0" role="button">
+            <circle cx="120" cy="205" r="46"/><text x="120" y="201">محمد</text><text x="120" y="222">وفي</text>
+          </g>
+          <g class="node" data-id="ammar" tabindex="0" role="button">
+            <circle cx="285" cy="125" r="46"/><text x="285" y="130">أنمار</text>
+          </g>
+          <g class="node" data-id="moayed" tabindex="0" role="button">
+            <circle cx="500" cy="180" r="46"/><text x="500" y="185">مؤيد</text>
+          </g>
+          <g class="node" data-id="salah" tabindex="0" role="button">
+            <circle cx="715" cy="115" r="46"/><text x="715" y="111">صلاح</text><text x="715" y="132">الصباغ</text>
+          </g>
+          <g class="node" data-id="adi" tabindex="0" role="button">
+            <circle cx="885" cy="200" r="46"/><text x="885" y="196">عدي</text><text x="885" y="217">الدراجي</text>
+          </g>
+          <g class="node" data-id="khalid" tabindex="0" role="button">
+            <circle cx="230" cy="400" r="46"/><text x="230" y="405">خالد</text>
+          </g>
+          <g class="node assistant" data-id="salman" tabindex="0" role="button">
+            <circle cx="770" cy="400" r="46"/><text x="770" y="395">سلمان</text><text class="subtext" x="770" y="416">مساعد</text>
+          </g>
+        </svg>
+        <p class="note">سلمان مساعد، مو مدرس.</p>
+      </div>
+    </section>
 
-<section class="branch">
-<div class="branch-head"><span>📚</span>اللغات</div><div class="branch-line"></div>
-<div class="people">
-<button class="person" data-name="أستاذ العربي" data-subject="اللغة العربية" data-bio="اكتب هنا التعريف الطريف المتفق عليه مع الأستاذ." data-audio=""><span class="avatar">ع</span><strong>أستاذ العربي</strong><small>اللغة العربية</small></button>
-<button class="person" data-name="أستاذ الإنكليزي" data-subject="اللغة الإنكليزية" data-bio="اكتب هنا التعريف الطريف المتفق عليه مع الأستاذ." data-audio=""><span class="avatar">A</span><strong>أستاذ الإنكليزي</strong><small>اللغة الإنكليزية</small></button>
-</div>
-</section>
-</div>
-<div id="empty" class="empty">ما لكينا نتائج. جرّب اسم ثاني.</div>
+    <section id="teacherSection">
+      <div class="section-head">
+        <h2 id="sectionTitle">أستاذ محمد وفي</h2>
+        <span id="subjectCaption">الكيمياء</span>
+      </div>
+
+      <article class="teacher-card chemistry" id="teacherCard">
+        <div class="teacher-head">
+          <div class="photo">
+            <img id="teacherPhoto" src="images/mohammed.jpg" alt="صورة الأستاذ">
+            <div class="placeholder" id="photoPlaceholder">أضف صورة الأستاذ داخل مجلد images</div>
+          </div>
+          <div>
+            <h2 class="teacher-name" id="teacherName">أستاذ محمد وفي</h2>
+            <span class="subject" id="teacherSubject">الكيمياء</span>
+          </div>
+        </div>
+
+        <div class="fields">
+          <div class="field">
+            <h3>الطالب المفضل عنده</h3>
+            <p id="favorite">غير معروف</p>
+          </div>
+          <div class="field">
+            <h3>التعريف</h3>
+            <p id="description"></p>
+          </div>
+        </div>
+
+        <div class="quote" id="quote"></div>
+
+        <div class="audio hidden" id="audioArea">
+          <h3>تسجيل أستاذ أنمار</h3>
+          <audio id="anmarAudio" controls preload="none">
+            <source src="audio/anmar-ya-fashil.mp3" type="audio/mpeg">
+          </audio>
+          <p class="note">أضف التسجيل باسم anmar-ya-fashil.mp3 داخل مجلد audio حتى يشتغل.</p>
+        </div>
+      </article>
+
+      <div class="controls">
+        <button class="secondary" id="prevBtn">السابق</button>
+        <button id="nextBtn">التالي</button>
+        <button class="secondary" id="treeBackBtn">الشجرة</button>
+      </div>
+    </section>
+
+    <section class="challenge">
+      <h2>تحدي التفاضل</h2>
+      <p>ارسم الدالة باستخدام التفاضل:</p>
+      <div class="equation">
+        f(x) = ((x² − 4)³ · ln(x² + 1)) / (x² + 2)
+        + 3 arctan(x) − √(x⁴ + 1)
+      </div>
+      <p class="prize">اللي يحلها قسطه وقسط أحفاده مدفوع.</p>
+    </section>
+  </section>
 </main>
 
-<footer>STUDENT PROJECT • MADE WITH RESPECT<br>موقع طلابي ساخر بموافقة أصحاب الملفات المنشورة.</footer>
-
-<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="profileName">
-<div class="profile">
-<button class="close" id="close" aria-label="إغلاق">×</button>
-<div class="profile-avatar" id="profileAvatar">👨‍🏫</div>
-<h2 id="profileName">اسم الأستاذ</h2>
-<div class="tag" id="profileSubject">المادة</div>
-<p class="bio" id="profileBio"></p>
-<div class="audio-box">
-<p>🎙️ رسالة صوتية</p>
-<audio id="player" controls preload="none"></audio>
-<div id="audioNote" class="note">التسجيل الصوتي غير مضاف حالياً.</div>
-</div>
-</div>
-</div>
+<footer></footer>
 
 <script>
-const modal=document.getElementById('modal');
-const player=document.getElementById('player');
-const audioNote=document.getElementById('audioNote');
-document.querySelectorAll('.person').forEach(btn=>{
-btn.addEventListener('click',()=>{
-document.getElementById('profileName').textContent=btn.dataset.name;
-document.getElementById('profileSubject').textContent=btn.dataset.subject;
-document.getElementById('profileBio').textContent=btn.dataset.bio;
-document.getElementById('profileAvatar').textContent=btn.querySelector('.avatar').textContent;
-player.pause();
-player.removeAttribute('src');
-player.load();
-if(btn.dataset.audio){
-player.src=btn.dataset.audio;
-audioNote.textContent='شغّل الرسالة من زر التشغيل.';
-}else{
-audioNote.textContent='التسجيل الصوتي غير مضاف حالياً.';
+const teachers = [
+  {
+    id:"mohammed", name:"أستاذ محمد وفي", subject:"الكيمياء",
+    theme:"chemistry", favorite:"غير معروف",
+    description:"أقوى مدرس كيمياء بالشرق الأوسط يشرحلك المادة منا بعد ما تنساها",
+    quote:"ملح فوق الطعام", photo:"images/mohammed.jpg"
+  },
+  {
+    id:"ammar", name:"أستاذ أنمار", subject:"الرياضيات",
+    theme:"math", favorite:"لايوجد كلها فشلة",
+    description:"وقع من الدرج تلث مرات وكلشي مبي اذا حجالك قصة حتى يوضح فكره لا تصدك",
+    quote:"يا فاشل", photo:"images/ammar.jpg", audio:true
+  },
+  {
+    id:"moayed", name:"أستاذ مؤيد", subject:"العربي",
+    theme:"arabic", favorite:"بسام",
+    description:"استاذ يطب دقايق ميطول يطلعك ابو الاسود الدولي",
+    quote:"هسة خلي نضحك على فاطمة", photo:"images/moayed.jpg"
+  },
+  {
+    id:"salah", name:"أستاذ صلاح الصباغ", subject:"الفيزياء",
+    theme:"physics", favorite:"ياسمين",
+    description:"استاذ محبوب ميزعلك ابد لطيف جدا ومدرس قوي واكاديمي",
+    quote:"العفو", photo:"images/salah.jpg"
+  },
+  {
+    id:"adi", name:"أستاذ عدي الدراجي", subject:"الإنكليزي",
+    theme:"english", favorite:"هم بسام",
+    description:"مدرس رائع جدا مو لان ابن عمي دراجي بس مدرس قوي ومصحح مليون واربعمية مره وزاري",
+    quote:"حسن شكم انشاء اطلبك", photo:"images/adi.jpg"
+  },
+  {
+    id:"khalid", name:"أستاذ خالد", subject:"الأحياء",
+    theme:"biology", favorite:"هم اني انتم شعليكم اني مسوي الموقع",
+    description:"شرح رائع ويدخلك الفكره لاعماق المخيخ",
+    quote:"جيبلي امبولة من استاذ سلمان", photo:"images/khalid.jpg"
+  },
+  {
+    id:"salman", name:"أستاذ سلمان", subject:"مساعد",
+    theme:"assistant", favorite:"اكيد مو بسام",
+    description:"وين متحطة يرهم كلشي يدرس ويجيب شلون مي بارد الف رحمه على والديه",
+    quote:"وين القسط", photo:"images/salman.jpg"
+  }
+];
+
+let activeIndex = 0;
+
+const chooseScreen = document.getElementById("chooseScreen");
+const siteScreen = document.getElementById("siteScreen");
+const teacherSection = document.getElementById("teacherSection");
+const treeSection = document.getElementById("treeSection");
+
+function enterSite(character) {
+  document.getElementById("chosenName").textContent = character;
+  chooseScreen.classList.add("hidden");
+  siteScreen.classList.remove("hidden");
+  showTeacher(0);
+  window.scrollTo({top:0,behavior:"smooth"});
 }
-modal.classList.add('open');
-document.getElementById('close').focus();
-});
-});
-function closeModal(){
-modal.classList.remove('open');
-player.pause();
+
+function showTeacher(index) {
+  activeIndex = (index + teachers.length) % teachers.length;
+  const t = teachers[activeIndex];
+
+  document.getElementById("sectionTitle").textContent = t.name;
+  document.getElementById("subjectCaption").textContent = t.subject;
+  document.getElementById("teacherName").textContent = t.name;
+  document.getElementById("teacherSubject").textContent = t.subject;
+  document.getElementById("favorite").textContent = t.favorite;
+  document.getElementById("description").textContent = t.description;
+  document.getElementById("quote").textContent = "«" + t.quote + "»";
+
+  document.getElementById("teacherCard").className = "teacher-card " + t.theme;
+
+  const img = document.getElementById("teacherPhoto");
+  const placeholder = document.getElementById("photoPlaceholder");
+  img.style.display = "block";
+  placeholder.style.display = "none";
+  img.src = t.photo;
+  img.alt = "صورة " + t.name;
+  img.onerror = () => {
+    img.style.display = "none";
+    placeholder.style.display = "flex";
+  };
+
+  document.getElementById("audioArea").classList.toggle("hidden", !t.audio);
+  if (!t.audio) {
+    const audio = document.getElementById("anmarAudio");
+    audio.pause();
+    audio.currentTime = 0;
+  }
+
+  document.querySelectorAll(".node").forEach(node => {
+    node.classList.toggle("active", node.dataset.id === t.id);
+  });
 }
-document.getElementById('close').addEventListener('click',closeModal);
-modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
-document.getElementById('search').addEventListener('input',e=>{
-const q=e.target.value.trim().toLowerCase();
-let count=0;
-document.querySelectorAll('.branch').forEach(branch=>{
-let visible=0;
-branch.querySelectorAll('.person').forEach(btn=>{
-const match=(btn.dataset.name+' '+btn.dataset.subject).toLowerCase().includes(q);
-btn.style.display=match?'':'none';
-if(match){visible++;count++}
+
+document.querySelectorAll("[data-character]").forEach(button => {
+  button.addEventListener("click", () => enterSite(button.dataset.character));
 });
-branch.style.display=visible?'':'none';
+
+document.querySelectorAll(".node").forEach(node => {
+  function openTeacher() {
+    const index = teachers.findIndex(t => t.id === node.dataset.id);
+    if (index !== -1) {
+      showTeacher(index);
+      teacherSection.scrollIntoView({behavior:"smooth"});
+    }
+  }
+  node.addEventListener("click", openTeacher);
+  node.addEventListener("keydown", event => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      openTeacher();
+    }
+  });
 });
-document.getElementById('empty').style.display=count?'none':'block';
+
+document.getElementById("prevBtn").addEventListener("click", () => {
+  showTeacher(activeIndex - 1);
+  teacherSection.scrollIntoView({behavior:"smooth"});
 });
+document.getElementById("nextBtn").addEventListener("click", () => {
+  showTeacher(activeIndex + 1);
+  teacherSection.scrollIntoView({behavior:"smooth"});
+});
+
+function scrollToTree() {
+  treeSection.scrollIntoView({behavior:"smooth"});
+}
+document.getElementById("treeBtn").addEventListener("click", () => {
+  if (!siteScreen.classList.contains("hidden")) scrollToTree();
+});
+document.getElementById("treeBackBtn").addEventListener("click", scrollToTree);
+
+document.getElementById("changeBtn").addEventListener("click", () => {
+  if (siteScreen.classList.contains("hidden")) return;
+  const audio = document.getElementById("anmarAudio");
+  audio.pause();
+  audio.currentTime = 0;
+  siteScreen.classList.add("hidden");
+  chooseScreen.classList.remove("hidden");
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+
+showTeacher(0);
 </script>
 </body>
 </html>
